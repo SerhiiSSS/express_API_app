@@ -8,7 +8,7 @@ router.route('/seats').get((req, res) => {
 })
 
 router.route('/seats/:id').get((req, res) => {
-  const iteam = db.seats.filter((iteam) => iteam.id === req.params.id)
+  const iteam = db.seats.filter((item) =>  item.id === Number(req.params.id))
   res.json(iteam)
 })
 

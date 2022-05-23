@@ -8,7 +8,7 @@ router.route('/testimonials').get((req, res) => {
 })
 
 router.route('/testimonials/:id').get((req, res) => {
-  const iteam = db.testimonials.filter((iteam) => iteam.id === req.params.id)
+  const iteam = db.testimonials.filter((iteam) => iteam.id === Number(req.params.id))
   res.json(iteam) /** показує один ел табл з id*/
 })
 
