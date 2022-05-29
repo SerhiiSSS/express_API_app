@@ -20,10 +20,15 @@ router.route('/seats').post((req, res) => {
     client: req.body.client,
     email: req.body.email
   }
+  if(db.seats.some(checkSeats => (checkSeats.day === req.body.day && checkSeats.seat === req.body.seat))) {
+    return res.status(404).json({ message: 'The slot is already taken...'})
+  } else {
   db.seats.push(newSeats)
-  res.json({
+  return res.json({
     message: 'OK'
   })
+}
+
 })
 
 router.route('/seats/:id').put((req, res) => {
