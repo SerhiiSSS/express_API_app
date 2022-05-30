@@ -1,13 +1,20 @@
 import React from 'react';
 import { Button, Progress, Alert } from 'reactstrap';
-
+import io from 'socket.io-client';
 import './SeatChooser.scss';
 
 class SeatChooser extends React.Component {
   
   componentDidMount() {
-    const { loadSeats } = this.props;
+    const { loadSeats, loadSeatsData } = this.props;
     loadSeats();
+
+    this.socket = io(process.env.PORT || 'localhost:8000');
+
+    this.socket.on('seatsUpdate', (seats) => {
+      loadSeatsData(seats)
+    })
+    
     this.interval = setInterval(loadSeats, 12000)
   }
   stopInterval() {
