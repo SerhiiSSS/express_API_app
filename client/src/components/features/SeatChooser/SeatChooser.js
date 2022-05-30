@@ -14,7 +14,7 @@ class SeatChooser extends React.Component {
     this.socket.on('seatsUpdate', (seats) => {
       loadSeatsData(seats)
     })
-    
+
     this.interval = setInterval(loadSeats, 12000)
   }
   stopInterval() {
@@ -22,13 +22,21 @@ class SeatChooser extends React.Component {
   }
   componentWillUnmount() {
     this.stopInterval()
-  }
+  };
+
+  freeSeats = () => {
+    const { seats , chosenDay } = this.props;
+    
+    const occupiedSeatCount = seats.filter(seat => seat.day === chosenDay)
+
+    return 50 - occupiedSeatCount.length
+  };
 
   isTaken = (seatId) => {
     const { seats, chosenDay } = this.props;
-
+    // console.log(chosenDay);
     return (seats.some(item => (item.seat === seatId && item.day === chosenDay)));
-  }
+  };
 
   prepareSeat = (seatId) => {
     const { chosenSeat, updateSeat } = this.props;
@@ -37,13 +45,13 @@ class SeatChooser extends React.Component {
     if(seatId === chosenSeat) return <Button key={seatId} className="seats__seat" color="primary">{seatId}</Button>;
     else if(isTaken(seatId)) return <Button key={seatId} className="seats__seat" disabled color="secondary">{seatId}</Button>;
     else return <Button key={seatId} color="primary" className="seats__seat" outline onClick={(e) => updateSeat(e, seatId)}>{seatId}</Button>;
-  }
+  };
 
   render() {
 
     const { prepareSeat } = this;
     const { requests } = this.props;
-
+    const { freeSeats } = this;
     return (
       <div>
         <h3>Pick a seat</h3>
@@ -52,6 +60,7 @@ class SeatChooser extends React.Component {
         { (requests['LOAD_SEATS'] && requests['LOAD_SEATS'].success) && <div className="seats">{[...Array(50)].map((x, i) => prepareSeat(i+1) )}</div>}
         { (requests['LOAD_SEATS'] && requests['LOAD_SEATS'].pending) && <Progress animated color="primary" value={50} /> }
         { (requests['LOAD_SEATS'] && requests['LOAD_SEATS'].error) && <Alert color="warning">Couldn't load seats...</Alert> }
+        <p className='mt-2'>Free seats : {freeSeats()}/50</p>
       </div>
     )
   };
