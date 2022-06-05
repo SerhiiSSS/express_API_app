@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, '/client/build')));
 
 app.use(cors());
 
-mongoose.connect('mongodb://localhost:27017/NewWaveDB', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://Sehii:Prokopenko25@cluster0.0bwbho4.mongodb.net/NewWaveDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 db.once('open', () => {
