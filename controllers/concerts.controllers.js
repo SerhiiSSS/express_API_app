@@ -21,10 +21,10 @@ exports.getRecordById = async (req, res) => {
 }
 
 exports.addNewRecord = async (req, res) => {
-  const {perfomer, genre, price, day} = req.body
+  const {perfomer, genre, price, day, image } = req.body
 
   try {
-   const newConcert = new Concert({ perfomer, genre, price, day })
+   const newConcert = new Concert({ perfomer, genre, price, day, image })
    await newConcert.save()
    res.json({ message: 'Ok'}) 
   } catch (error) {

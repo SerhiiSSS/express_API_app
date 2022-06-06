@@ -3,10 +3,10 @@ const router = express.Router()
 
 const ConcertController = require('../controllers/concerts.controllers')
 
-router.get('/concert', ConcertController.getAllRecord)
-router.get('/concert/:id', ConcertController.getRecordById)
-router.post('/concert', ConcertController.addNewRecord)
-router.put('/concert/:id', ConcertController.editRecord)
-router.delete('/concert/:id', ConcertController.deleteRecord)
+router.get('/concerts', ConcertController.getAllRecord)
+router.get('/concerts/:id', ConcertController.getRecordById)
+router.post('/concerts', ConcertController.addNewRecord)
+router.put('/concerts/:id', ConcertController.editRecord)
+router.delete('/concerts/:id', ConcertController.deleteRecord)
 
 module.exports = router;
