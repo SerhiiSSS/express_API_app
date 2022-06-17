@@ -15,10 +15,10 @@ const Prices = () => (
     <p>Price: 25$</p>
     <p>Workshops: "Rock Music Style", "How to make you voice grooowl", "Make your voice stronger", "History of Rock"</p>
     <h2>Day Two</h2>
-    <p>Price: 25$</p>
+    <p>Price: 30$</p>
     <p>Workshops: "Find your real tune", "Find your real YOU", "Fell the music", "Jam session"</p>
     <h2>Day three</h2>
-    <p>Price: 50$</p>
+    <p>Price: 35$</p>
     <p>Workshops: "Increase your vocal range", "How to properly warmup before singing", "It's time for YOU!"</p>
   </Container>
 );
