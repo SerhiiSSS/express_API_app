@@ -14,7 +14,7 @@ exports.getRecordById = async (req, res) => {
   try {
     const concert = await Concert.findById(req.params.id)
     if(!concert)res.status(404).json({ message: 'Not found'})
-    else res.status(concert)
+    else res.json(concert)
   } catch (error) {
     res.status(500).json({ message: err})
   }
@@ -63,3 +63,79 @@ exports.deleteRecord = async (req, res) => {
     res.status(500).json({ message: err})
   }
 }
+
+  exports.getPerfomer = async (req, res) => {
+
+    try {
+      const perfomer = req.params.performer;
+      const getPerfomer = await Concert.find({
+        perfomer: perfomer
+      });
+
+      if(!getPerfomer) res.status(404).json({ message: 'Not found'})
+      else {
+        res.json(getPerfomer)
+      }
+      
+    } catch (err) {
+      res.status(500).json({ message: err });
+    }
+  }
+
+  exports.getGenre = async (req, res) => {
+
+    try {
+      const genre = req.params.genre
+      const getGenre = await Concert.find({
+        genre: genre
+      });
+
+      if(!getGenre) res.status(404).json({ message: 'Not found'})
+      else {
+        res.json(getGenre)
+      }
+    } catch (err) {
+      res.status(500).json({ message: err })
+    }
+  }
+
+  exports.getPrice = async (req, res) => {
+
+    try {
+      const priceMin = req.params.price_min
+      const priceMax = req.params.price_max
+      const concertPrice = await Concert.find({
+        price: {
+          $gte: priceMin,
+          $lte: priceMax
+        }
+      });
+
+      if(!concertPrice) res.status(500).json({ message: 'Not found'})
+      else {
+        res.json(concertPrice)
+      }
+    } catch (err) {
+      res.status(500).json({ message: err })
+    }
+  }
+
+  exports.getByDay = async (req, res) => {
+
+    try {
+      const day = req.params.day
+      const getDay = await Concert.find({
+        day: day
+      });
+
+      if(!getDay) res.status(500).json({ message: 'Not found'})
+      else {
+        res.json(getDay)
+      }
+    } catch (err) {
+      res.status(500).json({ message: err})
+    }
+  }
+
+
+

@@ -16,8 +16,20 @@ app.use(express.static(path.join(__dirname, '/client/build')));
 
 app.use(cors());
 
-mongoose.connect('mongodb+srv://Sehii:Prokopenko25@cluster0.0bwbho4.mongodb.net/NewWaveDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect('mongodb+srv://Sehii:Prokopenko25@cluster0.0bwbho4.mongodb.net/NewWaveDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+// const db = mongoose.connection;
+
+const NODE_ENV = process.env.NODE_ENV;
+let dbURI = '';
+
+if(NODE_ENV === 'production') dbURI = 'mongodb+srv://Sehii:Prokopenko25@cluster0.0bwbho4.mongodb.net/NewWaveDB?retryWrites=true&w=majority';
+else if(NODE_ENV === 'test') dbURI = 'mongodb://localhost:27017/NewWaveDBTest';
+else dbURI = 'mongodb://localhost:27017/NewWaveDB';
+
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true });
+
 const db = mongoose.connection;
+
 
 db.once('open', () => {
   console.log('Connected to the database');
@@ -50,3 +62,5 @@ app.use((req, res) => {
     message: 'Not found...'
   })
 })
+
+module.exports = server;

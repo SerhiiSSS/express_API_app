@@ -34,7 +34,7 @@ class SeatChooser extends React.Component {
 
   isTaken = (seatId) => {
     const { seats, chosenDay } = this.props;
-    // console.log(chosenDay);
+    // console.log(seats);
     return (seats.some(item => (item.seat === seatId && item.day === chosenDay)));
   };
 

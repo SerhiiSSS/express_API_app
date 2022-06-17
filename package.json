@@ -5,6 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon server.js",
+    "test": "NODE_ENV=test mocha \"./{,!(node_modules|client)/**/}*.test.js\"",
+    "test:watch": "onchange \"./**/*.js\" -i -k -- npm test",
     "build": "cd client && npm install && npm build"
   },
   "engines": {
@@ -14,14 +16,18 @@
   "dependencies": {
     "axios": "0.18.0",
     "bootstrap": "^4.3.1",
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
     "cli": "^1.0.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
     "global": "^4.4.0",
+    "mocha": "^10.0.0",
     "mongodb": "^4.6.0",
     "mongoose": "^5.13.14",
     "nodemon": "^2.0.16",
+    "onchange": "^7.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "7.0.1",
@@ -31,9 +37,9 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
     "sass": "^1.49.9",
+    "socket.io": "^2.4.1",
     "socket.io-client": "^4.5.1",
-    "uuid": "^8.3.2",
-    "socket.io": "^2.4.1"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/socket.io": "^3.0.2"
