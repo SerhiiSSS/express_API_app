@@ -4,20 +4,23 @@ const cors = require('cors')
 const path = require('path')
 const socket = require('socket.io')
 const mongoose = require('mongoose');
+const helmet = require('helmet')
 
 const testimonialsRoutes = require('./routes/testimonials.routes')
 const concertsRoutes = require('./routes/concerts.routes')
 const seatRoutes = require('./routes/seats.routes')
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '/client/build')));
 
 app.use(cors());
+app.use(helmet());
 
-// mongoose.connect('mongodb+srv://Sehii:Prokopenko25@cluster0.0bwbho4.mongodb.net/NewWaveDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect(`mongodb+srv://Sehii:Prokopenko25@cluster0.0bwbho4.mongodb.net/NewWaveDB?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true });
 // const db = mongoose.connection;
+
+// if(NODE_ENV === 'production') dbURI = `mongodb+srv://${process.env.GITHUB_USERNAME}:${process.env.S3_KEY}@cluster0.0bwbho4.mongodb.net/NewWaveDB?retryWrites=true&w=majority`;
 
 const NODE_ENV = process.env.NODE_ENV;
 let dbURI = '';

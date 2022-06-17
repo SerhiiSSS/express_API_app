@@ -1,4 +1,5 @@
 const Concert = require('../models/concert.model')
+const sanitize = require('mongo-sanitize')
 
 exports.getAllRecord = async (req, res) => {
   
@@ -33,7 +34,8 @@ exports.addNewRecord = async (req, res) => {
 }
 
 exports.editRecord = async (req, res) => {
-  const {perfomer, genre, price, day} = req.body
+  const sanit = sanitize(req.body)
+  const {perfomer, genre, price, day} = sanit
 
   try {
     const editConcert = await Concert.findById(req.params.id)
