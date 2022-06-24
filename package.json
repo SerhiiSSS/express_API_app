@@ -28,7 +28,7 @@
     "mongo-sanitize": "^1.0.1",
     "mongodb": "^4.6.0",
     "mongoose": "^5.13.14",
-    "nodemon": "^2.0.16",
+    "nodemon": "^2.0.17",
     "onchange": "^7.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
