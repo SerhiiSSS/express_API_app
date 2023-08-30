@@ -26,7 +26,7 @@
     "helmet": "^3.21.1",
     "mocha": "^10.0.0",
     "mongo-sanitize": "^1.0.1",
-    "mongodb": "^4.6.0",
+    "mongodb": "^4.17.0",
     "mongoose": "^5.13.14",
     "nodemon": "^2.0.16",
     "onchange": "^7.1.0",
